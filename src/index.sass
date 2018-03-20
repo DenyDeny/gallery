@@ -2,14 +2,33 @@
   min-height: 100vh
   display: flex
   flex-direction: column
-  justify-content: center
   align-items: center
+  max-width: 1200px
+  margin: auto
+
+.main-image
+  margin-top: 20px
+  margin-bottom: 20px
+  height: 100%
+  border: 8px solid black
+  img
+    max-width: 100%
+    height: auto
+
 
 .previews
   display: flex
-  .image
-    width: 200px
-    height: 100px
-    img
-      width: 100%
-      height: 100%
+  justify-content: space-between
+  width: 100%
+  .peviews-img
+    border: 8px solid black
+    margin-right: 8px
+    &:last-child
+      margin-right: 0
+
+    .image
+      max-width: 100%
+      height: auto
+      img
+        width: 100%
+        height: 100%

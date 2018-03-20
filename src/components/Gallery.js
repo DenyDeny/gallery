@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+import mountains from '../images/mountains.jpg'
+import lake from '../images/lake.jpg'
+import moto from '../images/moto.jpg'
+
 const PHOTO_SET = [
     {
         src: 'https://www.bluecross.org.uk/sites/default/files/assets/images/118809lpr.jpg',
@@ -27,11 +31,29 @@ const renderImages = () =>
 
 const Gallery = () => (
     <div className="container">
-        <div className="images">
-            <div className="main-image">Big image</div>
-            <div className="previews">{renderImages()}</div>
+        <div className="main-image">
+            <img className="responsive" src={mountains} alt="" />
         </div>
-        <div>Paginations</div>
+        <div className="previews">
+            <div className="peviews-img">
+                <img className="image" src={lake} alt="" />
+            </div>
+            <div className="peviews-img">
+                <img className="image" src={mountains} alt="" />
+            </div>
+            <div className="peviews-img">
+                <img className="image" src={moto} alt="" />
+            </div>
+            <div className="peviews-img">
+                <img className="image" src={lake} alt="" />
+            </div>
+            <div className="peviews-img">
+                <img className="image" src={mountains} alt="" />
+            </div>
+            <div className="peviews-img">
+                <img className="image" src={moto} alt="" />
+            </div>
+        </div>
     </div>
 )
 export default Gallery
