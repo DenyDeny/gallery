@@ -20,7 +20,7 @@ class Gallery extends Component {
         activeImage = (
             <img
                 className="responsive"
-                key={this.state.activeImage}
+                key={images[this.state.activeImage].index}
                 src={images[this.state.activeImage].src}
                 alt={images[this.state.activeImage].alt}
             />
@@ -49,7 +49,10 @@ class Gallery extends Component {
         })
     }
 
-    renderImages = images => images.map((image, index) => <Preview photo={image} key={index} />)
+    renderImages = images =>
+        images.map((image, index) => (
+            <Preview activeImage={this.state.activeImage} photo={image} key={index} />
+        ))
 
     render() {
         const { images } = this.state
