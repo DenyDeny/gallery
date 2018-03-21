@@ -1,3 +1,12 @@
+$backGradientFrom: #141E30
+$backGradientTo: #243B55
+  
+*
+  box-sizing: border-box
+
+.main-container
+  background: linear-gradient($backGradientFrom, $backGradientTo)
+  
 .container
   min-height: 100vh
   display: flex
@@ -6,23 +15,57 @@
   max-width: 1200px
   margin: auto
 
-.main-image
+.main-image-wrapper
+  display: flex
   margin-top: 20px
   margin-bottom: 20px
-  height: 100%
-  border: 8px solid black
+  position: relative
+
+.main-image
+  overflow: hidden
+  z-index: 1
   img
     max-width: 100%
     height: auto
-
+    transition: all .2s ease-in-out
+    &:hover
+      transform: scale(1.8)
+      cursor: pointer
+  &:after,
+  &:before
+    z-index: -1
+    position: absolute
+    content: ""
+    bottom: 15px
+    left: 10px
+    width: 50%
+    top: 80%
+    max-width: 300px
+    background: #000
+    -webkit-box-shadow: 0 15px 10px #000
+    -moz-box-shadow: 0 15px 10px #000
+    box-shadow: 0 15px 10px #000
+    -webkit-transform: rotate(-3deg)
+    -moz-transform: rotate(-3deg)
+    -o-transform: rotate(-3deg)
+    -ms-transform: rotate(-3deg)
+    transform: rotate(-3deg)
+  &:after
+    -webkit-transform: rotate(3deg)
+    -moz-transform: rotate(3deg)
+    -o-transform: rotate(3deg)
+    -ms-transform: rotate(3deg)
+    transform: rotate(3deg)
+    right: 10px
+    left: auto
 
 .previews
   display: flex
   justify-content: space-between
   width: 100%
   .peviews-img
-    border: 8px solid black
     margin-right: 8px
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
     &:last-child
       margin-right: 0
 
@@ -32,3 +75,19 @@
       img
         width: 100%
         height: 100%
+
+.prev-btn,
+.next-btn
+  background-color: darken($backGradientTo, 10%)
+  color: #fff
+  border: none
+  position: absolute
+  bottom: 0
+  height: 100%
+  width: 80px
+  z-index: 1
+.prev-btn
+  left: 0
+  z-index: 2
+.next-btn
+  right: 0

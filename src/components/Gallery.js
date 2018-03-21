@@ -31,8 +31,12 @@ const renderImages = () =>
 
 const Gallery = () => (
     <div className="container">
-        <div className="main-image">
-            <img className="responsive" src={mountains} alt="" />
+        <div className="main-image-wrapper">
+            <button className="prev-btn">Prev</button>
+            <div className="main-image">
+                <img className="responsive" src={mountains} alt="" />
+            </div>
+            <button className="next-btn">Next</button>
         </div>
         <div className="previews">
             <div className="peviews-img">
