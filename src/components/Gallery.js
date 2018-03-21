@@ -1,67 +1,85 @@
 import React, { Component } from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 
-import sun from '../images/red-sun.jpg'
-import birds from '../images/birds.jpg'
-import sky from '../images/purple-sky.jpeg'
+import Preview from './Preview'
 
-const PHOTO_SET = [
-    {
-        src: 'https://www.bluecross.org.uk/sites/default/files/assets/images/118809lpr.jpg',
-    },
-    {
-        src:
-            'https://i.amz.mshcdn.com/zy65wibIKGJwrQ3LlrTIKPGfDoE=/1200x630/2017%2F11%2F12%2F85%2F0cb95ccbac6441e7a30fb7d1d01b094d.bc1ee.png',
-    },
-    {
-        src:
-            'https://media.mnn.com/assets/images/2016/11/cat-with-big-eyes-gimo.jpg.653x0_q80_crop-smart.jpg',
-    },
-    {
-        src:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG1qXkZgM_ooN6C3yRj03le973htRGSbiQ842m2dbUHbyK11mZ',
-    },
-]
+import PHOTO_SET from './photos'
 
-const renderImages = () =>
-    PHOTO_SET.map((item, index) => (
-        <div className="image">
-            <img src={item.src} alt="cat" />
-        </div>
-    ))
+class Gallery extends Component {
+    constructor() {
+        super()
+        this.state = {
+            activeImage: 0,
+            images: [...PHOTO_SET],
+        }
+    }
 
-const Gallery = () => (
-    <div className="container">
-        <div className="main-image-wrapper">
-            <button className="prev-btn">
-                <i className="fas fa-chevron-left" />
-            </button>
-            <div className="main-image">
-                <img className="responsive" src={birds} alt="" />
+    getActiveImage() {
+        const { images } = this.state
+        let activeImage = null
+        activeImage = (
+            <img
+                className="responsive"
+                key={this.state.activeImage}
+                src={images[this.state.activeImage].src}
+                alt={images[this.state.activeImage].alt}
+            />
+        )
+
+        return activeImage
+    }
+    /* eslint-disable no-plusplus */
+    handleSlide(direction) {
+        const { images, activeImage } = this.state
+        let currentIndex = activeImage
+        if (direction === 'prev') {
+            --currentIndex
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1
+            }
+        } else if (direction === 'next') {
+            ++currentIndex
+            if (currentIndex > images.length - 1) {
+                currentIndex = 0
+            }
+        }
+
+        this.setState({
+            activeImage: currentIndex,
+        })
+    }
+
+    renderImages = images => images.map((image, index) => <Preview photo={image} key={index} />)
+
+    render() {
+        const { images } = this.state
+        if (images.length === 0) {
+            return null
+        }
+        const currentImage = this.getActiveImage()
+
+        return (
+            <div className="container">
+                <div className="main-image-wrapper">
+                    <button onClick={() => this.handleSlide('prev')} className="prev-btn">
+                        <i className="fas fa-chevron-left" />
+                    </button>
+                    <div className="main-image">
+                        <CSSTransitionGroup
+                            transitionName="main-image"
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={300}
+                        >
+                            {currentImage}
+                        </CSSTransitionGroup>
+                    </div>
+                    <button onClick={() => this.handleSlide('next')} className="next-btn">
+                        <i className="fas fa-chevron-right" />
+                    </button>
+                </div>
+                <div className="previews">{this.renderImages(images)}</div>
             </div>
-            <button className="next-btn">
-                <i className="fas fa-chevron-right" />
-            </button>
-        </div>
-        <div className="previews">
-            <div className="peviews-img">
-                <img className="image" src={birds} alt="" />
-            </div>
-            <div className="peviews-img">
-                <img className="image" src={sun} alt="" />
-            </div>
-            <div className="peviews-img">
-                <img className="image" src={sky} alt="" />
-            </div>
-            <div className="peviews-img">
-                <img className="image" src={birds} alt="" />
-            </div>
-            <div className="peviews-img">
-                <img className="image" src={sun} alt="" />
-            </div>
-            <div className="peviews-img">
-                <img className="image" src={sky} alt="" />
-            </div>
-        </div>
-    </div>
-)
+        )
+    }
+}
 export default Gallery
