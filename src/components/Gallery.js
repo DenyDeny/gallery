@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import mountains from '../images/mountains.jpg'
-import lake from '../images/lake.jpg'
-import moto from '../images/moto.jpg'
+import sun from '../images/red-sun.jpg'
+import birds from '../images/birds.jpg'
+import sky from '../images/purple-sky.jpeg'
 
 const PHOTO_SET = [
     {
@@ -32,30 +32,34 @@ const renderImages = () =>
 const Gallery = () => (
     <div className="container">
         <div className="main-image-wrapper">
-            <button className="prev-btn">Prev</button>
+            <button className="prev-btn">
+                <i className="fas fa-chevron-left" />
+            </button>
             <div className="main-image">
-                <img className="responsive" src={mountains} alt="" />
+                <img className="responsive" src={birds} alt="" />
             </div>
-            <button className="next-btn">Next</button>
+            <button className="next-btn">
+                <i className="fas fa-chevron-right" />
+            </button>
         </div>
         <div className="previews">
             <div className="peviews-img">
-                <img className="image" src={lake} alt="" />
+                <img className="image" src={birds} alt="" />
             </div>
             <div className="peviews-img">
-                <img className="image" src={mountains} alt="" />
+                <img className="image" src={sun} alt="" />
             </div>
             <div className="peviews-img">
-                <img className="image" src={moto} alt="" />
+                <img className="image" src={sky} alt="" />
             </div>
             <div className="peviews-img">
-                <img className="image" src={lake} alt="" />
+                <img className="image" src={birds} alt="" />
             </div>
             <div className="peviews-img">
-                <img className="image" src={mountains} alt="" />
+                <img className="image" src={sun} alt="" />
             </div>
             <div className="peviews-img">
-                <img className="image" src={moto} alt="" />
+                <img className="image" src={sky} alt="" />
             </div>
         </div>
     </div>
