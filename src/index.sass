@@ -126,3 +126,19 @@ $backGradientTo: #243B55
 .main-image-leave.main-image-leave-active
   opacity: 0.01
   transition: opacity 300ms ease-in
+
+@media (max-width: 768px)
+  .main-container
+    background: linear-gradient(#fff, #000)
+    overflow: hidden
+    height: 100%
+  .previews
+    flex-wrap: wrap
+    justify-content: space-around
+    .peviews-img
+      flex-basis: 180px
+      margin-right: 0
+      margin-bottom: 20px
+  .main-image-wrapper
+    max-height: 40vh
+  .main-image
