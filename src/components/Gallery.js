@@ -49,9 +49,20 @@ class Gallery extends Component {
         })
     }
 
+    setActiveImageThroughPreview(index) {
+        this.setState({
+            activeImage: index,
+        })
+    }
+
     renderImages = images =>
         images.map((image, index) => (
-            <Preview activeImage={this.state.activeImage} photo={image} key={index} />
+            <Preview
+                setActiveImage={this.setActiveImageThroughPreview.bind(this)}
+                activeImage={this.state.activeImage}
+                photo={image}
+                key={index}
+            />
         ))
 
     render() {
